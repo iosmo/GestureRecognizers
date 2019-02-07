@@ -19,67 +19,42 @@ class MovabableItemViewController: UIViewController {
         return viewController
     }
 
-//    private func addBackgroundGestureRecognizer() {
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MovabableItemViewController.handleTap(sender:)))
-//        tapGestureRecognizer.delegate = self
-//        view.addGestureRecognizer(tapGestureRecognizer)
-//    }
-
     override func viewWillAppear(_ animated: Bool) {
         addGestureRecognizers()
     }
 
-
-
     public func addGestureRecognizers() {
-        print("addGestureRecognizers")
-        addTapGestureRecognizer()
-//        addPanGestureRecongizerToView()
-//        addLongPressGestureRecognizerToView()
-//        addRotateGestureRecongizerToView()
-//        addPinchGestureRecongizerToView()
-    }
-
-    private func addTapGestureRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MovabableItemViewController.handleTap(sender:)))
-        view.addGestureRecognizer(tapGestureRecognizer)
-    }
-
-    @objc private func handleTap(sender: UITapGestureRecognizer) {
-        print("handleTap inside MovableItemViewController")
+        addPanGestureRecongizerToView()
+        addLongPressGestureRecognizerToView()
+        addRotateGestureRecongizerToView()
+        addPinchGestureRecongizerToView()
     }
 
     private func addPanGestureRecongizerToView() {
-        print("addPanGestureRecongizerToView")
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MovabableItemViewController.handlePan(sender:)))
         panGestureRecognizer.delegate = self
         view.addGestureRecognizer(panGestureRecognizer)
     }
 
     private func addLongPressGestureRecognizerToView() {
-        print("addLongPressGestureRecognizerToView")
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(MovabableItemViewController.handleLongPress(sender:)))
         longPressGestureRecognizer.delegate = self
         view.addGestureRecognizer(longPressGestureRecognizer)
     }
 
     private func addPinchGestureRecongizerToView() {
-        print("addPinchGestureRecongizerToView")
         let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(MovabableItemViewController.handlePinch(sender:)))
         pinchGestureRecognizer.delegate = self
         view.addGestureRecognizer(pinchGestureRecognizer)
     }
 
     private func addRotateGestureRecongizerToView() {
-        print("addRotateGestureRecongizerToView")
         let rotateGestureRecongizer = UIRotationGestureRecognizer(target: self, action: #selector(MovabableItemViewController.handleRotation(sender:)))
         rotateGestureRecongizer.delegate = self
         view.addGestureRecognizer(rotateGestureRecongizer)
     }
 
     @objc private func handlePan(sender: UIPanGestureRecognizer) {
-        print("handlePan")
-
         let currentView = sender.view!
         let translation = sender.translation(in: view)
 
@@ -93,8 +68,6 @@ class MovabableItemViewController: UIViewController {
     }
 
     @objc private func handlePinch(sender: UIPinchGestureRecognizer) {
-        print("handlePinch")
-
         switch sender.state {
         case .began, .changed:
             view.transform = view.transform.scaledBy(x: sender.scale, y: sender.scale)
@@ -105,8 +78,6 @@ class MovabableItemViewController: UIViewController {
     }
 
     @objc private func handleRotation(sender: UIRotationGestureRecognizer) {
-        print("handleRotation")
-
         switch sender.state {
         case .began, .changed:
             view.transform = view.transform.rotated(by: sender.rotation)
@@ -116,30 +87,13 @@ class MovabableItemViewController: UIViewController {
         }
     }
 
-    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
-        print("handleLongPress")
-
+    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {t
         view.removeFromSuperview()
     }
 }
 
 extension MovabableItemViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith _: UIGestureRecognizer) -> Bool {
-        return true
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        print("Touch MovabableItemViewController")
-        return true
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
-        print("Press MovabableItemViewController")
-        return true
-    }
-
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        print("shouldBegin MovabableItemViewController")
         return true
     }
 }
