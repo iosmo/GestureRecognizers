@@ -87,7 +87,7 @@ class MovabableItemViewController: UIViewController {
         }
     }
 
-    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {t
+    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
         view.removeFromSuperview()
     }
 }
